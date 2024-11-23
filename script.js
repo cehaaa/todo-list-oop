@@ -1,19 +1,20 @@
 class Store {
 	#localStorageKey;
+	#store;
 	constructor() {
-		this.localStorageKey = "todo-local-storage";
-		this.store = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+		this.#localStorageKey = "todo-local-storage";
+		this.#store = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [];
 	}
 	get getTaskList() {
-		return this.store;
+		return this.#store;
 	}
 	setStore(payload) {
-		this.store.push(payload);
-		localStorage.setItem(this.localStorageKey, JSON.stringify(this.store));
+		this.#store.push(payload);
+		localStorage.setItem(this.#localStorageKey, JSON.stringify(this.#store));
 	}
 	removeFromStore(id) {
-		this.store = this.store.filter(task => task.id !== id);
-		localStorage.setItem(this.localStorageKey, JSON.stringify(this.store));
+		this.#store = this.#store.filter(task => task.id !== id);
+		localStorage.setItem(this.#localStorageKey, JSON.stringify(this.#store));
 	}
 }
 class Form {
@@ -64,7 +65,7 @@ class App {
 		this.taskList.innerHTML = cards;
 		this.applyRemoveTaskHandler();
 	}
-	applyRemoveTaskHandler(e) {
+	applyRemoveTaskHandler() {
 		const removeButtons = document.querySelectorAll(".remove-task");
 		removeButtons.forEach(button => {
 			button.addEventListener("click", this.removeTaskHandler.bind(this));

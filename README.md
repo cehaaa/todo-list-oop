@@ -1,5 +1,3 @@
-# to-do-list-OOP-JS
+# todo-list-oop
 
-simple to do list with OOP Javascript , still have a bug when delete the list 
-
-still looking for the solution :)
+This project is a simple to-do list application built with OOP principles in JavaScript. It allows users to add tasks with titles and descriptions, and store them in the browser's local storage. Users can also remove tasks from the list. The application uses Tailwind CSS for styling.
