@@ -17,6 +17,7 @@ class Store {
 		localStorage.setItem(this.#localStorageKey, JSON.stringify(this.#store));
 	}
 }
+
 class Form {
 	constructor({ store, onTaskAdded }) {
 		this.store = store;
