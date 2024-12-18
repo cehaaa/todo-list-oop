@@ -4,11 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://cdn.tailwindcss.com"></script>
-		<title>Document</title>
+		<title>Simple To-do List App</title>
 	</head>
 	<body class="bg-zinc-100">
-		<section class="container mx-auto px-24">
-			<form class="flex pt-8 gap-8" id="task-form">
+		<header class="container mx-auto p-5 md:px-24 md:py-8">
+			<h1 class="text-xl md:text-2xl font-medium font-serif">Today's Task</h1>
+			<p class="mt-2 text-gray-500 text-sm md:text-base">
+				Simple to-do list application built with OOP principles in JavaScript.
+			</p>
+		</header>
+		<section class="container mx-auto px-5 pb-5 md:px-24 md:pb-8">
+			<form class="flex flex- md:flex-row gap-8" id="task-form">
 				<input
 					id="task-input"
 					type="text"
@@ -24,12 +30,17 @@
 				</button>
 			</form>
 		</section>
-		<section class="container mx-auto px-24">
-			<div class="grid grid-cols-4 gap-5 py-8" id="task-list"></div>
+		<section class="container mx-auto px-5 md:px-24 pb-8">
+			<div
+				class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5"
+				id="task-list"
+			></div>
 		</section>
 	</body>
 
+	<script src="./data.js"></script>
 	<script src="./components/CloseIcon.js"></script>
 	<script src="./components/Card.js"></script>
+	<script src="./components/Empty.js"></script>
 	<script src="./script.js"></script>
 </html>
