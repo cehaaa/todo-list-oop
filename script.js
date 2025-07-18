@@ -4,15 +4,25 @@ class Store {
   constructor() {
     this.#localStorageKey = "todo-local-storage";
     this.#tasks = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [];
-
-    if (this.#tasks.length === 0) this.setStoreInitialValues();
   }
   get getTaskList() {
     return this.#tasks;
   }
-  setStoreInitialValues() {
-    this.#tasks = dummyTasks;
-    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.#tasks));
+  async init() {
+    if (this.#tasks.length === 0) {
+      await this.setStoreInitialValues();
+    }
+  }
+  async setStoreInitialValues() {
+    try {
+      const response = await fetch("./data.json");
+      const dummyTasks = await response.json();
+      this.#tasks = dummyTasks;
+      localStorage.setItem(this.#localStorageKey, JSON.stringify(this.#tasks));
+    } catch (error) {
+      console.error("Error loading initial data:", error);
+      this.#tasks = [];
+    }
   }
   setStore(task) {
     this.#tasks.push(task);
@@ -90,12 +100,13 @@ class App {
     this.store.removeFromStore(+id);
     this.render();
   }
-  init() {
+  async init() {
+    await this.store.init();
     this.render();
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const app = new App();
-  app.init();
+  await app.init();
 });
